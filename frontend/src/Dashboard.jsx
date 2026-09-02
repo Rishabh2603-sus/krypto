@@ -145,15 +145,26 @@ export default function Dashboard() {
                 </div>
 
                 <div style={{ background: "#FBFAF6", border: "1px solid #E4E1D6", borderRadius: 4, padding: "20px 24px", marginBottom: 20 }}>
-                    <div style={{ fontSize: 13, color: "#8A887F", marginBottom: 12 }}>90-day forecast</div>
+                    <div style={{ fontSize: 13, color: "#8A887F", marginBottom: 12 }}>
+                        Cash balance history
+                    </div>
                     <ResponsiveContainer width="100%" height={200}>
-                        <LineChart data={data.forecast} margin={{ top: 4, right: 12, left: 0, bottom: 0 }}>
+                        <LineChart
+                            data={data.cash_balance_history}
+                            margin={{ top: 4, right: 12, left: 0, bottom: 0 }}
+                        >
                             <CartesianGrid strokeDasharray="2 4" stroke="#E4E1D6" vertical={false} />
                             <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#8A887F" }} axisLine={{ stroke: "#E4E1D6" }} tickLine={false} />
                             <YAxis tickFormatter={inr} tick={{ fontSize: 11, fill: "#8A887F" }} axisLine={false} tickLine={false} width={54} />
                             <ReferenceLine y={0} stroke="#D85A30" strokeDasharray="3 3" />
                             <Tooltip formatter={(v) => inr(v)} contentStyle={{ fontSize: 12, border: "1px solid #E4E1D6", borderRadius: 4 }} />
-                            <Line type="monotone" dataKey="cash" stroke="#1A1A17" strokeWidth={2} dot={{ r: 3 }} />
+                            <Line
+                                type="monotone"
+                                dataKey="cash_balance"
+                                stroke="#1A1A17"
+                                strokeWidth={2}
+                                dot={{ r: 3 }}
+                            />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
