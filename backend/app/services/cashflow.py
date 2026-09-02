@@ -23,16 +23,69 @@ def load_transactions(file_path: str) -> pd.DataFrame:
 
 
 def calculate_cashflow(df: pd.DataFrame) -> dict:
-    """Calculate basic cash-flow metrics from transactions."""
+    """Calculate cash-flow metrics and running cash balance."""
 
-    total_income = df.loc[df["type"] == "income", "amount"].sum()
-    total_expense = df.loc[df["type"] == "expense", "amount"].sum()
+    df = df.sort_values("date").copy()
+
+    # Treat Opening Balance separately from normal transactions
+    opening_balance_rows = df[
+        df["description"].str.lower().str.strip() == "opening balance"
+    ]
+
+    if not opening_balance_rows.empty:
+        opening_balance = opening_balance_rows["amount"].iloc[0]
+    else:
+        opening_balance = 0
+
+    # Exclude opening balance from income/expense calculations
+    transactions = df[
+        df["description"].str.lower().str.strip() != "opening balance"
+    ].copy()
+
+    total_income = transactions.loc[
+        transactions["type"] == "income", "amount"
+    ].sum()
+
+    total_expense = transactions.loc[
+        transactions["type"] == "expense", "amount"
+    ].sum()
 
     net_cashflow = total_income - total_expense
 
+    # Calculate running cash balance
+    transactions["cash_change"] = transactions["amount"]
+
+    transactions.loc[
+        transactions["type"] == "expense", "cash_change"
+    ] *= -1
+
+    transactions["cash_balance"] = (
+        opening_balance + transactions["cash_change"].cumsum()
+    )
+
+    # Convert history into API-friendly format
+    cash_balance_history = [
+        {
+            "date": row["date"].strftime("%Y-%m-%d"),
+            "description": row["description"],
+            "cash_change": float(row["cash_change"]),
+            "cash_balance": float(row["cash_balance"]),
+        }
+        for _, row in transactions.iterrows()
+    ]
+
+    current_cash = (
+        float(transactions["cash_balance"].iloc[-1])
+        if not transactions.empty
+        else float(opening_balance)
+    )
+
     return {
+        "opening_balance": float(opening_balance),
         "total_income": float(total_income),
         "total_expense": float(total_expense),
         "net_cashflow": float(net_cashflow),
+        "current_cash": current_cash,
         "transaction_count": len(df),
+        "cash_balance_history": cash_balance_history,
     }
