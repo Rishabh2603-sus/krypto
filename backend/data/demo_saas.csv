@@ -1,0 +1,21 @@
+date,description,type,amount
+2026-08-01,Opening Balance,income,2500000
+2026-08-03,AWS Cloud Infrastructure,expense,180000
+2026-08-05,Engineering Salaries,expense,650000
+2026-08-08,Office Space Lease,expense,120000
+2026-08-12,Enterprise Contract - FinTech Global,income,850000
+2026-08-15,Google Cloud & Datadog,expense,95000
+2026-08-20,Product Marketing & Paid Ads,expense,140000
+2026-08-28,Enterprise Renewal - TechCorp Inc,income,1200000
+2026-08-31,Executive & Ops Payroll,expense,550000
+2026-09-04,Software Subscriptions (SaaS Tools),expense,75000
+2026-09-08,Legal & Compliance Retainer,expense,60000
+2026-09-14,Enterprise Pilot - RetailChain Ltd,income,450000
+2026-09-18,Engineering Salaries,expense,680000
+2026-09-22,Security Audit & SOC2 Certification,expense,110000
+2026-09-27,Sales Commissions & Bonuses,expense,190000
+2026-10-02,Enterprise Contract - MegaBank Asia,income,1600000
+2026-10-05,Office Space Lease,expense,120000
+2026-10-10,AWS Cloud Infrastructure,expense,210000
+2026-10-18,Engineering Salaries,expense,690000
+2026-10-25,Customer Expansion - FinTech Global,income,500000

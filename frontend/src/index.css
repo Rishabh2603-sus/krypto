@@ -1,14 +1,337 @@
-* {
-  box-sizing: border-box;
+/* ============================================================
+   KRYPTO Design System — Obsidian Noir × Portfolio Craftsmanship
+   Engineered for ultra-smooth responsiveness, tactile micro-haptics,
+   and zero AI-slop aesthetics.
+   ============================================================ */
+
+:root {
+  /* Surface palette — deep obsidian & carbon layers */
+  --bg-base: #050505;
+  --bg-surface: #0a0b0e;
+  --bg-elevated: #111317;
+  --bg-card: rgba(15, 17, 23, 0.65);
+  --bg-card-hover: rgba(22, 25, 34, 0.85);
+  --bg-glass: rgba(13, 15, 20, 0.55);
+
+  /* Precise structural borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --border-active: rgba(255, 255, 255, 0.22);
+  --border-glow: rgba(56, 211, 159, 0.35);
+
+  /* Typography & luminescence */
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #52525b;
+  --text-muted: #3f3f46;
+
+  /* Accent highlights — electric emerald & luminous cyan */
+  --accent-primary: #38d39f;
+  --accent-primary-rgb: 56, 211, 159;
+  --accent-hover: #5eead4;
+  --accent-dim: rgba(56, 211, 159, 0.10);
+  --accent-glow: rgba(56, 211, 159, 0.25);
+
+  /* Semantic metrics */
+  --income-color: #34d399;
+  --income-dim: rgba(52, 211, 153, 0.12);
+  --expense-color: #f43f5e;
+  --expense-dim: rgba(244, 63, 94, 0.12);
+  --warning-color: #fbbf24;
+  --warning-dim: rgba(251, 191, 36, 0.12);
+
+  /* Charts */
+  --chart-line: #38d39f;
+  --chart-area: rgba(56, 211, 159, 0.08);
+  --chart-grid: rgba(255, 255, 255, 0.035);
+  --chart-dot: #5eead4;
+
+  /* Spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  /* Layout */
+  --sidebar-width: 250px;
+  --sidebar-collapsed: 68px;
+  --header-height: 60px;
 }
 
-html,
-body,
-#root {
+/* Global Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  min-height: 100%;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100dvh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom Cursor Hiding for desktop */
+@media (pointer: fine) {
+  body, button, a, input, select, textarea, [role="button"], [data-cursor-hover] {
+    cursor: none !important;
+  }
+}
+
+/* Clean minimal scrollbars */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+::selection {
+  background: rgba(56, 211, 159, 0.25);
+  color: #ffffff;
+}
+
+/* Dynamic Mouse Glow Card (from Portfolio) */
+.glow-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-opacity: 0;
+  position: relative;
+  overflow: hidden;
+  background: rgba(14, 16, 22, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.3s ease, transform 0.25s var(--ease-out);
+}
+
+.glow-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: var(--glow-opacity);
+  background: radial-gradient(
+    550px circle at var(--glow-x) var(--glow-y),
+    rgba(255, 255, 255, 0.04),
+    transparent 40%
+  );
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: var(--glow-opacity);
+  background: radial-gradient(
+    280px circle at var(--glow-x) var(--glow-y),
+    rgba(56, 211, 159, 0.25),
+    transparent 40%
+  );
+  border-radius: inherit;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+/* Legacy glass-card alias mapped directly to glow-card aesthetics */
+.glass-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(14, 16, 22, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.25s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Micro-badge & Pill styling */
+.tech-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tech-pill.active {
+  background: rgba(56, 211, 159, 0.08);
+  border-color: rgba(56, 211, 159, 0.3);
+  color: var(--accent-primary);
+}
+
+/* Interactive Button Styling */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  transition: all 0.2s var(--ease-out);
+  user-select: none;
+}
+
+.btn-premium:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(56, 211, 159, 0.4);
+  background: rgba(56, 211, 159, 0.12);
+  color: var(--accent-primary);
+  box-shadow: 0 0 16px rgba(56, 211, 159, 0.12);
+  transition: all 0.2s var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: rgba(56, 211, 159, 0.2);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 24px rgba(56, 211, 159, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Modern web guidance: Soft Edge Content Fade for scrollable lists */
+.soft-fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+/* Skeleton Loading Pulse */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.07) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.8s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeletonPulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Table styling with clean typography */
+.krypto-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+
+.krypto-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.krypto-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  transition: background-color 0.15s ease;
+}
+
+.krypto-table tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+  }
 }
