@@ -1,4 +1,8 @@
-const API_BASE_URL = "http://127.0.0.1:8000";
+let rawBase = (import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? "http://127.0.0.1:8000" : "")).trim().replace(/\/$/, "");
+if (rawBase && !rawBase.startsWith("http://") && !rawBase.startsWith("https://")) {
+  rawBase = `https://${rawBase}`;
+}
+const API_BASE_URL = rawBase;
 
 // Fallback & In-Memory state for standalone operation
 let currentProfile = "Manufacturing MSME";
