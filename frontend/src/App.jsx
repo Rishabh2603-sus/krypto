@@ -165,7 +165,7 @@ export default function App() {
         id: "demo-msme",
         label: "Load Scenario: Manufacturing MSME",
         category: "Data Scenarios",
-        description: "Benchmark: ₹45.0L cash, Net-45 credit, 52d runway",
+        description: "Benchmark: ₹5.00L cash, Net-30 credit, 37d runway",
         icon: (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -181,7 +181,7 @@ export default function App() {
         id: "demo-saas",
         label: "Load Scenario: SaaS Startup",
         category: "Data Scenarios",
-        description: "Benchmark: ₹1.20Cr cash, high burn velocity, runway crunch",
+        description: "Benchmark: ₹4.80L cash, negative burn, 15d runway",
         icon: (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
@@ -196,7 +196,7 @@ export default function App() {
         id: "demo-d2c",
         label: "Load Scenario: D2C Retail Brand",
         category: "Data Scenarios",
-        description: "Benchmark: Fast inventory turnover, T+1 card settlements",
+        description: "Benchmark: ₹3.20L cash, fast turnover, T+1 card settlements",
         icon: (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="9" cy="21" r="1" />

@@ -143,7 +143,7 @@ export default function OverviewView({ playClick, playSuccess }) {
         <MetricCard
           label="Current Cash Position"
           value={data.current_cash}
-          riskContext={data.current_cash < 2000000 ? "high" : "low"}
+          riskContext={data.current_cash < 150000 ? "high" : "low"}
           icon={
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />

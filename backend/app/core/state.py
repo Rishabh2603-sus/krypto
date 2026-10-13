@@ -10,6 +10,18 @@ DEMO_PROFILES: Dict[str, Path] = {
     "retail": DATA_DIR / "demo_retail.csv",
 }
 
+PROFILE_ALIASES: Dict[str, str] = {
+    "default": "default",
+    "manufacturing msme": "default",
+    "manufacturing": "default",
+    "msme": "default",
+    "saas": "saas",
+    "saas startup": "saas",
+    "retail": "retail",
+    "d2c retail": "retail",
+    "d2c": "retail",
+}
+
 class AppState:
     def __init__(self):
         self._current_dataset_path: Path = DEMO_PROFILES["default"]
@@ -26,7 +38,8 @@ class AppState:
         self._current_profile = profile_name
 
     def switch_profile(self, profile: str) -> Path:
-        key = profile.lower().strip()
+        raw_key = profile.lower().strip()
+        key = PROFILE_ALIASES.get(raw_key, raw_key)
         if key not in DEMO_PROFILES:
             raise ValueError(f"Unknown profile '{profile}'. Valid profiles: {list(DEMO_PROFILES.keys())}")
         self._current_dataset_path = DEMO_PROFILES[key]

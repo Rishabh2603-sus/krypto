@@ -149,7 +149,7 @@ export default function ForecastView({ playClick }) {
                 </span>
                 . Bridge capital required:{" "}
                 <span style={{ fontFamily: "var(--font-mono)", fontWeight: 700, color: "var(--expense-color)" }}>
-                  {formatINR(capital_needed || 3200000)}
+                  {formatINR(capital_needed || 180000)}
                 </span>
               </div>
             </div>

@@ -122,7 +122,7 @@ export default function CashflowView({ playClick }) {
         <MetricCard
           label="Average Daily Burn Rate"
           value={burn.daily_burn}
-          riskContext={burn.daily_burn > 150000 ? "high" : "low"}
+          riskContext={burn.daily_burn > 35000 ? "high" : "low"}
           icon={
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />

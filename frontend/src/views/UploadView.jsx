@@ -15,23 +15,23 @@ export default function UploadView({ onDatasetSwitch, playClick, playSuccess, pl
     {
       id: "Manufacturing MSME",
       title: "Manufacturing MSME",
-      subtitle: "High inventory, Net-45 AR terms, seasonal production runs",
-      metrics: "₹45.0L Opening Cash · 52d Runway · Moderate Risk (64/100)",
-      tags: ["Industrial", "B2B", "CapEx Heavy"],
+      subtitle: "Machining workshop, Net-30 customer credit, raw material batching",
+      metrics: "₹5.00L Opening Cash · 37d Runway · Moderate Risk (48/100)",
+      tags: ["Fabrication", "B2B", "Job Work"],
     },
     {
       id: "SaaS Startup",
       title: "SaaS Startup",
-      subtitle: "Negative net burn, high AWS/salary spend, rapid subscription growth",
-      metrics: "₹1.20Cr Opening Cash · 39d Runway · High Risk (78/100)",
-      tags: ["Venture Backed", "High Burn", "Insolvency Risk"],
+      subtitle: "Bootstrapped micro-SaaS, cloud compute, dev team payroll",
+      metrics: "₹4.80L Opening Cash · 15d Runway · High Risk (76/100)",
+      tags: ["Digital Product", "Cloud Infra", "Runway Crunch"],
     },
     {
       id: "D2C Retail",
       title: "D2C Retail",
-      subtitle: "Fast inventory turnover, instant card settlements, volatile ad spend",
-      metrics: "₹32.0L Opening Cash · 38d Runway · Healthy (42/100)",
-      tags: ["Omnichannel", "Instant Inflow", "Marketing Volatility"],
+      subtitle: "Apparel boutique, daily payment settlements, influencer & ad spend",
+      metrics: "₹3.20L Opening Cash · 21d Runway · Healthy (38/100)",
+      tags: ["Omnichannel", "Daily Payouts", "Fast Turnover"],
     },
   ];
 
@@ -82,10 +82,10 @@ export default function UploadView({ onDatasetSwitch, playClick, playSuccess, pl
         message: `Successfully parsed "${file.name}" (${(file.size / 1024).toFixed(1)} KB). Ingested 142 valid transactions into ledger memory.`,
       });
       setParsedPreview([
-        { date: "2026-08-01", desc: "Opening Balance", type: "income", amount: "4,500,000" },
-        { date: "2026-08-03", desc: "Client Retainer", type: "income", amount: "1,200,000" },
-        { date: "2026-08-05", desc: "AWS Infrastructure", type: "expense", amount: "185,000" },
-        { date: "2026-08-07", desc: "Hardware Supplier Batch", type: "expense", amount: "820,000" },
+        { date: "2026-08-01", desc: "Opening Balance", type: "income", amount: "5,00,000" },
+        { date: "2026-08-02", desc: "Customer Payment - ABC Traders", type: "income", amount: "1,80,000" },
+        { date: "2026-08-03", desc: "Raw Material Purchase", type: "expense", amount: "95,000" },
+        { date: "2026-08-04", desc: "Employee Salaries", type: "expense", amount: "1,20,000" },
       ]);
       if (onDatasetSwitch) onDatasetSwitch();
     } catch {

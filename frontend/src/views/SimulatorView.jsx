@@ -246,8 +246,8 @@ export default function SimulatorView({ playClick, playSuccess }) {
               <input
                 type="range"
                 min="0"
-                max="2500000"
-                step="100000"
+                max="500000"
+                step="25000"
                 value={sliders.cashInjection}
                 onChange={(e) => handleSliderChange("cashInjection", e.target.value)}
                 className="sim-slider"
@@ -255,8 +255,8 @@ export default function SimulatorView({ playClick, playSuccess }) {
               />
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, fontFamily: "var(--font-mono)", color: "var(--text-tertiary)", marginTop: 3 }}>
                 <span>₹0 (None)</span>
-                <span>₹10.0L</span>
-                <span>₹25.0L (Bridge)</span>
+                <span>₹2.5L</span>
+                <span>₹5.0L (Working Capital)</span>
               </div>
             </div>
           </div>
